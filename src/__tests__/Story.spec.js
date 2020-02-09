@@ -16,10 +16,10 @@ jest.mock("../services/hnApi", () => ({
 test("renders the story component with content", async () => {
   getStory.mockImplementation(() => Promise.resolve(singularStory));
 
-  const { getByText, queryByTestId } = render(<Story storyId="1" />);
+  const { getByText, getByTestId } = render(<Story storyId="1" />);
   await waitForElement(() => [
-    queryByTestId("story"),
+    expect(getByTestId("story")).toBeTruthy(),
     expect(getByText("Its alive: for testing")).toBeTruthy(),
-    expect(queryByTestId("story-by").textContent).toEqual("By: Justin")
+    expect(getByTestId("story-by").textContent).toEqual("By: Justin")
   ]);
 });
