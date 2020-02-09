@@ -8,7 +8,7 @@ import {
   StoryMetaElement
 } from "../styles/StoryStyles";
 
-export const Story = ({ storyId }) => {
+export const Story = memo(function Story({ storyId }) {
   const [story, setStory] = useState({});
 
   useEffect(() => {
@@ -23,13 +23,13 @@ export const Story = ({ storyId }) => {
 
       <StoryMeta>
         <span className="story_by" data-testid="story-by">
-          <StoryMetaElement color="#000">By: </StoryMetaElement> {story.by}
+          <StoryMetaElement color="#000">By:</StoryMetaElement> {story.by}
         </span>
-        <span className="story_by" data-testid="story-by">
+        <span className="story_time" data-testid="story-time">
           <StoryMetaElement color="#000">Posted: </StoryMetaElement>
           {mapTime(story.time)}
         </span>
       </StoryMeta>
     </StoryWrapper>
   ) : null;
-};
+});
